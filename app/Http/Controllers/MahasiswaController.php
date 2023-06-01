@@ -137,4 +137,9 @@ class MahasiswaController extends Controller
         $posts = Mahasiswa::where('Nama', 'LIKE', '%' . $cari . '%')->paginate(6);
         return view('mahasiswas.index', ['posts'=>$posts]);
     }
+
+    public function nilai($Nim){
+        $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->find($Nim);
+        return view('mahasiswas.nilai', compact('mahasiswa'));        
+    }
 };
