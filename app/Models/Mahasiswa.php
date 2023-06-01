@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Mahasiswa as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model; //Model Eloquent
+use App\Models\Mahasiswas;
 
 class Mahasiswa extends Model //Definisi Model
 {
@@ -27,4 +28,9 @@ class Mahasiswa extends Model //Definisi Model
         'Email',
         'Tanggal_Lahir'
     ];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 };
