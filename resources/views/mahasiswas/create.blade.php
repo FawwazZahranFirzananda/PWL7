@@ -30,6 +30,10 @@
                             <input type="Nama" name="Nama" class="form-control" id="Nama" aria-describedby="Nama">
                         </div>
                         <div class="form-group">
+                            <label for="foto">Foto</label>
+                            <input type="file" name="foto" class="form-control" id="foto" aria-describedby="foto" accept="image/*">
+                        </div>
+                        <div class="form-group">
                             <label for="kelas">Kelas</label>
                             <select class="form-control" name="kelas_id">
                                 @foreach($kelas as $kls)

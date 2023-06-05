@@ -26,6 +26,7 @@
     <tr>
         <th>Nim</th>
         <th>Nama</th>
+        <th>Foto</th>
         <th>Kelas</th>
         <th>Jurusan</th>
         <th>No_Handphone</th>
@@ -37,6 +38,11 @@
     <tr>
         <td>{{ $Mahasiswa->Nim }}</td>
         <td>{{ $Mahasiswa->Nama }}</td>
+        @if ($Mahasiswa->foto == '')
+        <td><img width="100px" height="100px" src="{{ asset('image/pp.png') }}" style="object-fit: cover"></td>
+        @else
+        <td><img width="100px" height="100px" src="{{ asset('storage/' . $Mahasiswa->foto) }}" style="object-fit: cover"></td>
+        @endif
         <td>{{ $Mahasiswa->kelas->nama_kelas }}</td>
         <td>{{ $Mahasiswa->Jurusan }}</td>
         <td>{{ $Mahasiswa->No_Handphone }}</td>

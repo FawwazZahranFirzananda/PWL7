@@ -45,15 +45,24 @@ class MahasiswaController extends Controller
         $request->validate([ 
             'Nim' => 'required',
             'Nama' => 'required', 
+            'foto' => 'mimes:jpg,png,jpeg',
             'kelas_id' => 'required',
             'Jurusan' => 'required', 
             'No_Handphone' => 'required',
             'Email' => 'required',
             'Tanggal_Lahir' => 'required',]);
 
+        if ($request->file('foto')) {
+            // $nama_foto = $request->file('foto')->store('fotoMahasiswa', 'public');
+            $nama_foto = $request->file('foto')->store('fotoMahasiswa');
+        } else {
+            dd('foto kosong');
+        }
+
         $mahasiswas = new Mahasiswa;
         $mahasiswas->Nim = $request->get('Nim');
         $mahasiswas->Nama = $request->get('Nama');
+        $mahasiswas->foto = $nama_foto;
         $mahasiswas->Jurusan = $request->get('Jurusan');
         $mahasiswas->kelas_id = $request->get('kelas_id');
         $mahasiswas->No_Handphone = $request->get('No_Handphone');
@@ -107,6 +116,7 @@ class MahasiswaController extends Controller
         $request->validate([ 
             'Nim' => 'required',
             'Nama' => 'required', 
+            'foto' => 'mimes:jpg,png,jpeg',
             'kelas_id' => 'required',
             'Jurusan' => 'required', 
             'No_Handphone' => 'required',
@@ -141,5 +151,15 @@ class MahasiswaController extends Controller
     public function nilai($Nim){
         $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->find($Nim);
         return view('mahasiswas.nilai', compact('mahasiswa'));        
+    }
+
+    public function cetak_khs(Mahasiswa $mahasiswa)
+    {
+        $matkuls = $mahasiswa->matakuliah;
+        $pdf = pdf::loadview('mahasiswas.cetak_khs', [
+            'matkuls' => $matkuls,
+            'mahasiswa' => $mahasiswa,
+        ]);
+        return $pdf->stream();
     }
 };

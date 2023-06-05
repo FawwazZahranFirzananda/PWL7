@@ -46,4 +46,8 @@
             <a class="btn btn-success mt-3" href="{{ route('mahasiswas.index') }}">Kembali</a>
         </div>
 
+        <div class="text-center" style="margin-top: 37px">
+            <a href="{{ route('mahasiswa.cetak_khs', $mahasiswa->Nim) }}" class="btn" style="background: #DB1514; color: white; font-weight: 600;">Cetak ke PDF</a>
+        </div>
+
     </div>
