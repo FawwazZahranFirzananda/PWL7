@@ -26,3 +26,4 @@ Route::get('/search',[MahasiswaController::class, 'search']);
 Route::get('mahasiswas/nilai/{Nim}', [MahasiswaController::class, 'nilai'])->name('mahasiswas.nilai');
 Route::resource('articles', ArticleController::class);
 Route::get('/', [PageController::class, 'index']);
+Route::get('/article/cetak_pdf', [ArticleController::class, 'cetak_pdf']);
